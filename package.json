@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "Sumit Mukhi",
   "license": "MIT",
+  "scripts": {
+    "test": "tests/script"
+  }
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
