@@ -1,0 +1,16 @@
+{
+  "name": "monertizor-etherium",
+  "version": "1.0.0",
+  "description": "Monetizor is a platform to earn ethers by sharing content",
+  "main": "index.js",
+  "author": "Sumit Mukhi",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.13.5",
+    "node-restful": "^0.2.6"
+  }
+}

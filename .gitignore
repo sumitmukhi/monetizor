@@ -1,0 +1,15 @@
+bower_components
+node_modules
+.fuse*
+dist
+.tmp
+tmp
+.idea
+*.zip
+*.rdb
+.DS_Store
+.env
+config.js
+app/config.js
+*.swp
+yarn-error.log
