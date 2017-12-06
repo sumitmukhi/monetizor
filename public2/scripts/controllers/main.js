@@ -507,25 +507,44 @@ angular.module('homeController', [])
                         console.log("response ", $state.current.name);
                         // socialInit(response.authResponse.accessToken, "facebook");
                         $scope.user.fb_access_token = response.authResponse.accessToken;
-                        FB.api('/me', { locale: 'en_US', fields: 'id,name,email,first_name,last_name,gender,link,locale,timezone,picture' },
-                            function(response) {
-                                // console.log(response);
-                                $scope.user.user_id = $cookies._id;
-                                $scope.user.fb_id = response.id;
-                                $scope.user.name = response.name;
-                                $scope.user.image = response.picture.data.url;
-                                $scope.user.fb_profile_url = response.link;
+                        FB.api('/me', { locale: 'en_US', fields: 'id,name,email,first_name,last_name,gender,link,locale,timezone,picture' }, function(response) {
+                            // console.log(response);
+                            $scope.user.user_id = $cookies._id;
+                            $scope.user.fb_id = response.id;
+                            $scope.user.name = response.name;
+                            $scope.user.image = response.picture.data.url;
+                            $scope.user.fb_profile_url = response.link;
 
-                                User.update($scope.user)
-                                    .success(function(data) {
-                                        console.log("Mongo data : " + data, $state.current.name);
-                                        // $cookies.userId = data._id;
-                                        // $cookies.fbUserId = data.fb_id;
-                                        // $cookies.name = data.name;
-                                        // $cookies.image = data.image;
-                                        // $cookies.fb_access_token = data.fb_access_token;
-                                        // window.location.reload();
+                            User.update($scope.user).success(function(data) {
+                                console.log("Mongo data : " + data, $state.current.name);
+                                // $cookies.userId = data._id;
+                                // $cookies.fbUserId = data.fb_id;
+                                // $cookies.name = data.name;
+                                // $cookies.image = data.image;
+                                // $cookies.fb_access_token = data.fb_access_token;
+                                // window.location.reload();
 
+                                setTimeout(function() {
+                                    toastr.options = {
+                                        closeButton: true,
+                                        progressBar: true,
+                                        showMethod: 'fadeIn',
+                                        hideMethod: 'fadeOut',
+                                        timeOut: 3000
+                                    };
+                                    toastr.success("Successfully connected to facebook !", 'Connected !');
+                                }, 500);
+
+                                var authData = {};
+                                authData.token = $cookies.access_token;
+
+                                User.authenticate(authData).then(function(data) {
+                                        console.log(data);
+                                        $cookies.userId = data._id;
+                                        $cookies.fbUserId = data.fb_id;
+                                        $cookies.name = data.name;
+                                        $cookies.image = data.image;
+                                        $cookies.fb_access_token = data.fb_access_token;
                                         setTimeout(function() {
                                             toastr.options = {
                                                 closeButton: true,
@@ -534,48 +553,26 @@ angular.module('homeController', [])
                                                 hideMethod: 'fadeOut',
                                                 timeOut: 3000
                                             };
-                                            toastr.success("Successfully connected to facebook !", 'Connected !');
+                                            toastr.success('Welcome back '+data.handle, 'Success !');
                                         }, 500);
-
-                                        var authData = {};
-                                        authData.token = $cookies.access_token;
-
-                                        User.authenticate(authData)
-                                            .then(function(data) {
-                                                console.log(data);
-                                                $cookies.userId = data._id;
-                                                $cookies.fbUserId = data.fb_id;
-                                                $cookies.name = data.name;
-                                                $cookies.image = data.image;
-                                                $cookies.fb_access_token = data.fb_access_token;
-                                                $state.go('app.profile');
-                                                setTimeout(function() {
-                                                    toastr.options = {
-                                                        closeButton: true,
-                                                        progressBar: true,
-                                                        showMethod: 'fadeIn',
-                                                        hideMethod: 'fadeOut',
-                                                        timeOut: 3000
-                                                    };
-                                                    toastr.success('Welcome back '+data.handle, 'Success !');
-                                                }, 500);
-                                            }, function(error) {
-                                                console.log(error);
-                                                setTimeout(function() {
-                                                    toastr.options = {
-                                                        closeButton: true,
-                                                        progressBar: true,
-                                                        showMethod: 'fadeIn',
-                                                        hideMethod: 'fadeOut',
-                                                        timeOut: 3000
-                                                    };
-                                                    toastr.error(error, 'Error !');
-                                                }, 1000);
-                                            });
-                                    });
-                            }
-                        );
-                    } else {}
+                                    }, function(error) {
+                                        console.log(error);
+                                        setTimeout(function() {
+                                            toastr.options = {
+                                                closeButton: true,
+                                                progressBar: true,
+                                                showMethod: 'fadeIn',
+                                                hideMethod: 'fadeOut',
+                                                timeOut: 3000
+                                            };
+                                            toastr.error(error, 'Error !');
+                                    }, 1000);
+                                });
+                            });
+                        });
+                        $state.relod();
+                    } 
+                    else {}
                 });
             }
         }
