@@ -1,0 +1,115 @@
+<div class="page-inner" ng-controller="mainController">
+    <div class="page-breadcrumb">
+        <ol class="breadcrumb container">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Post</a></li>
+            <li class="active">{{thisPost.caption}}</li>
+        </ol>
+    </div>
+    <!-- <div class="page-title">
+        <div class="container">
+            <h3>{{}}</h3>
+        </div>
+    </div> -->
+    <div id="main-wrapper" class="container" ng-init="getPost()">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="panel info-box panel-white">
+                    <div class="panel-body">
+                        <div class="info-box-stats">
+                            <p class="counter">{{thisPost.share_count || '0'}}</p>
+                            <span class="info-box-title">Total Shares</span>
+                        </div>
+                        <div class="info-box-icon">
+                            <i class="icon-refresh"></i>
+                        </div>
+                        <div class="info-box-progress">
+                            <div class="progress progress-xs progress-squared bs-n">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel info-box panel-white">
+                    <div class="panel-body">
+                        <div class="info-box-stats">
+                            <p class="counter">1</p>
+                            <span class="info-box-title">Post views</span>
+                        </div>
+                        <div class="info-box-icon">
+                            <i class="icon-eye"></i>
+                        </div>
+                        <div class="info-box-progress">
+                            <div class="progress progress-xs progress-squared bs-n">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel info-box panel-white">
+                    <div class="panel-body">
+                        <div class="info-box-stats">
+                            <p><span class="counter">0</span></p>
+                            <span class="info-box-title">Total likes</span>
+                        </div>
+                        <div class="info-box-icon">
+                            <i class="icon-like"></i>
+                        </div>
+                        <div class="info-box-progress">
+                            <div class="progress progress-xs progress-squared bs-n">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel info-box panel-white">
+                    <div class="panel-body">
+                        <div class="info-box-stats">
+                            <p class="counter">0</p>
+                            <span class="info-box-title">Total comments</span>
+                        </div>
+                        <div class="info-box-icon">
+                            <i class="icon-envelope"></i>
+                        </div>
+                        <div class="info-box-progress">
+                            <div class="progress progress-xs progress-squared bs-n">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 mt-4 card-main">
+                <div class="panel panel-white">
+                    <div class="panel-title">
+                        <img class="card-img-top img-responsive" src="" style="height:300px; background: url({{thisPost.image}});background-size: cover;background-position: 100%;">
+                    </div>
+                    <div class="panel-body">
+                        <div class="card-block">
+                            <h4 class="card-title"><a href="{{thisPost.url}}">{{thisPost.title}}</a></h4>
+                            <small class="text-right" style="font-size:10px;">{{thisPost.caption}}</small>  
+                            <div class="card-text" style="margin-top: 20px;">
+                                {{thisPost.description}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-primary btn-sm" ng-click="share(thisPost)">Share in facebook</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

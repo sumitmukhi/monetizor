@@ -1,0 +1,78 @@
+<div class="page-inner" ng-controller="mainController" ng-init="getUserProfile();">
+    <div class="profile-cover">
+        <div class="container">
+            <div class="col-md-12 profile-info">
+                <div class="profile-info-value">
+                    <h3>{{profileData.share_count}}</h3>
+                    <p>Shares</p>
+                    <!-- {{profileData}} -->
+                </div>
+                <div class="profile-info-value">
+                    <h3>{{profileData.credited_count}}</h3>
+                    <p>Credit Shares</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="main-wrapper" class="container">
+        <div class="row">
+            <div class="col-md-4 user-profile">
+                <div class="profile-image-container">
+                    <img src="{{loggedInUser.image}}" alt="">
+                </div>
+                <h3 class="text-center">{{loggedInUser.name}} (@{{loggedInUser.handle}})</h3>
+                <hr>
+                <ul class="list-unstyled">
+                    <li>
+                        <p><i class="fa fa-envelope m-r-xs"></i><a href="#">{{loggedInUser.email}}</a></p>
+                    </li>
+                    <li>
+                        <p><i class="fa fa-link m-r-xs"></i>{{loggedInUser.fbUserId}}</p>
+                    </li>
+                </ul>
+                <hr>
+                <button ng-if="!loggedInUser.fbUserId" class="btn btn-primary btn-block" ng-click="checkLoginState()"><i class="fa fa-facebook m-r-xs"></i> &ensp; | &ensp;Connect Facebook</button>
+
+                <button ng-if="loggedInUser.fbUserId" class="btn btn-success btn-block"><i class="fa fa-check m-r-xs"></i> Facebook is connected</button>                
+            </div>
+            <div class="col-md-8 m-t-lg">
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        Update Information (Not Implemented)    
+                    </div>
+                    <div class="panel-body">
+                        <div class="post">
+                            <form action="">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="">Name</label>
+                                            <input type="text" class="form-control" ng-model="loggedInUser.name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="">Email</label>
+                                            <input type="text" class="form-control" ng-model="loggedInUser.email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="">Bitcoin Wallet</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-footer">
+        <div class="container">
+            <p class="no-s">2015 &copy; Modern by Steelcoders.</p>
+        </div>
+    </div>
+</div>
+<!-- Page Inner -->

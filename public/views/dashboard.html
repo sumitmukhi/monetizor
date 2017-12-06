@@ -1,0 +1,100 @@
+<div ng-controller="mainController">
+    <div class="main" ng-init="getFBShareCount(); getUserShareCount();">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 mt-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>
+                                All Post Shared Data 
+                            </h4>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Shares</th>
+                                        <th>View</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="post in postShareData">
+                                        <td>{{post.post_title}}</td>
+                                        <td class="text-danger">{{post.share_count}}</td>
+                                        <td><button class="btn btn-xs btn-success" ng-click="getThisPostData(post);">Details</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 mt-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>
+                                {{thisTitle}}
+                            </h4>
+                        </div>
+                        <div class="panel-body">
+                            <!-- {{thisPostData}} -->
+                            <table class="table table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="user in thisPostData">
+                                        <td>{{user.user_name}}</td>
+                                        <td class="text-danger">{{user.user_email}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- {{allUserShareData}} -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>
+                                All users
+                            </h4>
+                        </div>
+                        <div class="panel-body">
+                            <!-- {{thisPostData}} -->
+                            <table class="table table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>No of shares</th>
+                                        <th>Credited shares</th>
+                                        <th>Unpaid Shares</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="user in allUserShareData">
+                                        <td>{{user.user_name}}</td>
+                                        <td>{{user.user_email}}</td>
+                                        <td>{{user.share_count}}</td>
+                                        <td>{{user.credited_count}}</td>
+                                        <td>{{user.unpaid_shares}}</td>
+                                        <td><button class="btn btn-success btn-xs">Pay</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

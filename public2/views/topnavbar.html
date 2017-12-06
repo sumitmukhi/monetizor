@@ -1,0 +1,57 @@
+<div class="navbar" ng-controller="mainController">
+    <div class="navbar-inner container">
+        <div class="sidebar-pusher">
+            <a href="javascript:void(0);" class="waves-effect waves-button waves-classic push-sidebar">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        <div class="logo-box">
+            <a ui-sref="app.dashboard" class="logo-text"><span>Modern</span></a>
+        </div>
+        <!-- Logo Box -->
+        <div class="topmenu-outer">
+            <div class="top-menu">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <a href="javascript:void(0);" class="waves-effect waves-button waves-classic sidebar-toggle"><i class="fa fa-bars"></i></a>
+                     <li class="active">
+                        <a ui-sref="app.dashboard"><span class="menu-icon icon-speedometer"></span>&ensp; Dashboard</a>
+                    </li>
+                    <li>
+                        <a ui-sref="app.profile"><span class="menu-icon icon-user"></span>&ensp; Profile</a>
+                    </li>
+                    <li>
+                        <a ui-sref="app.create"><span class="menu-icon icon-pencil"></span>&ensp; Create post</a>
+                    </li>
+                    <li>
+                        <a ui-sref="app.admin"><span class="menu-icon icon-lock"></span>&ensp; Admin</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
+                            <span class="user-name">{{loggedInUser.handle}}<i class="fa fa-angle-down"></i></span>
+                            <img class="img-circle avatar" src="{{loggedInUser.image}}" width="40" height="40" alt="">
+                        </a>
+                        <ul class="dropdown-menu dropdown-list" role="menu">
+                            <li role="presentation"><a ui-sref="app.profile"><i class="fa fa-user"></i>Profile</a></li>
+                            <li role="presentation"><a href="login.html"><i class="fa fa-sign-out m-r-xs"></i>Log out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- Nav -->
+            </div>
+            <!-- Top Menu -->
+        </div>
+    </div>
+</div>
+<!-- Navbar -->
+<!-- <div class="page-sidebar sidebar horizontal-bar">
+    <div class="page-sidebar-inner">
+        <ul class="menu accordion-menu">
+            <li class="nav-heading"><span>Navigation</span></li>
+            <li class="active"><a href="index.html"><span class="menu-icon icon-speedometer"></span><p>Dashboard</p></a></li>
+            <li><a href="profile.html"><span class="menu-icon icon-user"></span><p>Profile</p></a></li>
+        </ul>
+    </div>
+</div> -->

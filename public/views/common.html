@@ -1,0 +1,14 @@
+<!-- Navigation -->
+<!--  <div ng-include="'views/common/navigation.html'"></div> -->
+<!-- Page wraper -->
+<!-- ng-class with current state name give you the ability to extended customization your view -->
+<div id="page-wrapper">
+    <!-- Page wrapper -->
+    <div ng-include="'/views/topnavbar.html'"></div>
+    <!-- Main view  -->
+    <div ui-view style="padding-top: 100px;"></div>
+    <!-- <div id="page-content-main" data-ng-init="forNotifications()" ui-view style="margin-top: 50px;"></div> -->
+    <!-- Footer -->
+    <div ng-include="'/views/footer.html'"></div>
+</div>
+<!-- End page wrapper-->

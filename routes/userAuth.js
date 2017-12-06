@@ -9,23 +9,65 @@ var User = require('../models/users.js');
 var VerifyToken = require('./verifyToken');
 
 
+router.get('/all', function(req, res) {
+    User.find({},
+        function(err, user) {
+            if (err) return res.status(500).send("Couldn't find any users.")
+
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send(JSON.stringify(user));
+        });
+});
+
+
 router.post('/register', function(req, res) {
 
-    var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+    User.findOne({ email: req.body.email }, function(err, user) {
+        if (err) return res.status(500).send('Error on the server.');
 
-    User.create({
-            name: req.body.name,
-            email: req.body.email,
-            password: hashedPassword
-        },
-        function(err, user) {
-            if (err) return res.status(500).send("There was a problem registering the user.")
-            // create a token
-            var token = jwt.sign({ id: user._id }, config.secret, {
-                expiresIn: 86400 // expires in 24 hours
+        if (user) return res.status(401).send('User already exists');
+
+        var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+
+        User.create({
+                handle: req.body.handle,
+                email: req.body.email,
+                password: hashedPassword
+            },
+            function(err, user) {
+                if (err) return res.status(500).send("There was a problem registering the user.")
+                // create a token
+                var token = jwt.sign({ id: user._id }, config.secret, {
+                    expiresIn: 86400 // expires in 24 hours
+                });
+                res.setHeader('Content-Type', 'application/json');
+                res.status(200).send(JSON.stringify({ auth: true, token: token }, null, 3));
             });
-            res.status(200).send({ auth: true, token: token });
-        });
+    });
+});
+
+router.put('/update', function(req, res) {
+
+    User.findOne({ email: req.body.email }, function(err, user) {
+        if (err) return res.status(500).send('Error on the server.');
+
+        User.update({
+            _id: req.body.user_id
+        }, {
+            $set: {
+                fb_id: req.body.fb_id,
+                name: req.body.name,
+                image: req.body.image,
+                fb_profile_url: req.body.fb_profile_url,
+                fb_access_token: req.body.fb_access_token
+            }
+        },
+            function(err, user) {
+                if (err) return res.status(500).send("There was a problem registering the user.")
+                res.setHeader('Content-Type', 'application/json');
+                res.status(200).send(JSON.stringify(user));
+            });
+    });
 });
 
 // router.get('/me', function(req, res) {

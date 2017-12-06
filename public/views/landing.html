@@ -1,0 +1,202 @@
+<nav class="navbar navbar-default navbar-fixed-top past-main">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Monetizor </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a class="page-scroll" href="#main">Home</a></li>
+                <li><a class="page-scroll" href="#services">Services</a></li>
+                <!-- <li><a class="page-scroll" href="#reviews">Reviews</a></li> -->
+                <li><a class="page-scroll" href="#pricing">Pricing</a></li>
+                <a class="btn btn-nav page-scroll wow fadeInDown" href="#download" data-wow-delay="0.3s"><span>Login</span></a>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- /.navbar-collapse -->
+<div id="main" class="main" ng-controller="mainController">
+    <div class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7 col-md-5">
+                    <div class="intro">
+                        <h1 class="wow fadeInDown" data-wow-delay="0.1s"><span>Monetizor</span> Etheriums are here for the take </h1>
+                        <p class="wow fadeInDowjn" data-wow-delay="0.2s">Earn free etheriums by sharing useful informtion to your peers and help the community grow</p>
+                        <a href="#" class="btn btn-action btn-gplus wow fadeInDown" data-wow-delay="0.3s" ng-click="checkLoginState()"><span><i class="ion-social-facebook"></i></span> <span>Login With Facebook</span></a>
+
+                        <form action="" class="form">
+                            <div class="form-group">
+                                <label for="">Email</label>
+                                <input type="email" class="form-control" ng-model="formData.email">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Password</label>
+                                <input type="password" class="form-control" ng-model="formData.password">
+                            </div>
+                            <button type="submit" class="btn btn-primary" ng-click="login()">Login</button>
+                        </form>
+
+                        <!-- {{formData}} -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pi-Hero -->
+    <div id="services" class="pi-points">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="points-intro text-center">
+                        <h1 class="wow fadeInDown">Our software features custom designed for startups to excel.</h1>
+                    </div>
+                </div>
+                <div class="col-sm-4 wow fadeInDown" data-wow-delay="0.1s">
+                    <div class="point-icon">
+                        <img src="assets/icons/1.png" width="45" alt="Feature">
+                    </div>
+                    <div class="point-text">
+                        <h1>Lorem Ipsum</h1>
+                        <p>Lorem Ipsum and something that can look good here. Lorem Ipsum and something that can look good here.</p>
+                    </div>
+                </div>
+                <div class="col-sm-4 wow fadeInDown" data-wow-delay="0.1s">
+                    <div class="point-icon">
+                        <img src="assets/icons/2.png" width="45" alt="Feature">
+                    </div>
+                    <div class="point-text">
+                        <h1>Lorem Ipsum</h1>
+                        <p>Lorem Ipsum and something that can look good here. Now this block looks really great in a way I guess.</p>
+                    </div>
+                </div>
+                <div class="col-sm-4 wow fadeInDown" data-wow-delay="0.2s">
+                    <div class="point-icon">
+                        <img src="assets/icons/3.png" width="45" alt="Feature">
+                    </div>
+                    <div class="point-text">
+                        <h1>Lorem Ipsum</h1>
+                        <p>Lorem Ipsum and something that can look good here. Now this block looks really great in a way I guess.</p>
+                    </div>
+                </div>
+                <div class="col-sm-4 wow fadeInDown" data-wow-delay="0.2s">
+                    <div class="point-icon">
+                        <img src="assets/icons/4.png" width="45" alt="Feature">
+                    </div>
+                    <div class="point-text">
+                        <h1>Lorem Ipsum</h1>
+                        <p>Lorem Ipsum and something that can look good here. Lorem Ipsum and something that can look good here.</p>
+                    </div>
+                </div>
+                <div class="col-sm-4 wow fadeInDown" data-wow-delay="0.3s">
+                    <div class="point-icon">
+                        <img src="assets/icons/5.png" width="45" alt="Feature">
+                    </div>
+                    <div class="point-text">
+                        <h1>Lorem Ipsum</h1>
+                        <p>Lorem Ipsum and something that can look good here. Now this block looks really great in a way I guess.</p>
+                    </div>
+                </div>
+                <div class="col-sm-4 wow fadeInDown" data-wow-delay="0.3s">
+                    <div class="point-icon">
+                        <img src="assets/icons/6.png" width="45" alt="Feature">
+                    </div>
+                    <div class="point-text">
+                        <h1>Lorem Ipsum</h1>
+                        <p>Lorem Ipsum and something that can look good here. Lorem Ipsum and something that can look good here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pitch-2">
+        <div class="container">
+            <div class="pitch-inner wow fadeInRight">
+                <h4>Why you need our pixel</h4>
+                <h1>Unmatched social sharing performance and audience reach.</h1>
+                <p>Just kidding you have to pay every month or every year to get all the benefits we mentioned everywhere. Everything comes at a cost.</p>
+                <button class="btn btn-primary btn-action" type="button"><span>Buy Now</span></button>
+            </div>
+        </div>
+    </div>
+    <div id="pricing" class="pricing-v2">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="intro wow fadeInDown" data-wow-delay="0.1s">
+                        <h4>Pricing</h4>
+                        <h1>Pick the right pricing plan for your needs</h1>
+                        <p>We have very fair pricing policy that would benefit you and us at the same time. Get the free plan &amp; if you need more - pay.
+                        </p>
+                        <p>Have something big? <a href="#">Contact us</a></p>
+                    </div>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <div class="table-left wow fadeInDown" data-wow-delay="0.2s">
+                        <div class="pricing-details">
+                            <h2>Free Plan</h2>
+                            <span>Free</span>
+                            <ul>
+                                <li>First basic feature </li>
+                                <li>Second feature goes here</li>
+                                <li>Any other third feature</li>
+                            </ul>
+                            <button class="btn btn-primary btn-action btn-edge" type="button"><span>Get Plan</span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <div class="table-right wow fadeInDown" data-wow-delay="0.4s">
+                        <div class="pricing-details">
+                            <h2>Starter Plan</h2>
+                            <span>$29.99</span>
+                            <ul>
+                                <li>First premium feature </li>
+                                <li>Second premium feature</li>
+                                <li>Third premium feature</li>
+                            </ul>
+                            <button class="btn btn-primary btn-action" type="button"><span>Buy Now</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="ft-left">
+                        <div class="footer-img">
+                            <img src="assets/icons/pi-logo.png" width="30" alt="Logo">
+                        </div>
+                        <p>Cu qui probo malorum saperet. Ne admodum apeirian iracundia usu, eam cu agam ludus, eum munere accusam molestie ut. Alienum percipitur ne est, pri quando iriure ad. </p>
+                        <p>&copy; 2017 YDirection Themes by IOThemes</p>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-sm-offset-3">
+                    <div class="ft-right">
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Product Details</a></li>
+                            <li><a href="#">Pricing</a></li>
+                            <li><a href="#">Privacy policy</a></li>
+                            <li><a href="#">User Agreement</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Main -->
