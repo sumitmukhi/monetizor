@@ -434,12 +434,12 @@ angular.module('homeController', [])
                                 angular.forEach($scope.allUserShareData, function(user) {
                                     console.log("here --- ", user._id, share.user_id);
                                     if(user._id == share.user_id){
-                                        to_push.user_name = user.name;
-                                        to_push.user_email = user.email;
+                                        to_push.user_name = user.user_name;
+                                        to_push.user_email = user.user_email;
                                         $scope.thisPostData.push(to_push);
                                     }
                                 });
-                                // to_push = {};
+                                to_push = {};
                             }
                         })
                     })
