@@ -62,11 +62,27 @@ router.put('/update', function(req, res) {
                 fb_access_token: req.body.fb_access_token
             }
         },
-            function(err, user) {
-                if (err) return res.status(500).send("There was a problem registering the user.")
-                res.setHeader('Content-Type', 'application/json');
-                res.status(200).send(JSON.stringify(user));
-            });
+        function(err, user) {
+            if (err) return res.status(500).send("There was a problem registering the user.")
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send(JSON.stringify(user));
+        });
+    });
+});
+
+router.put('/update/share', function(req, res) {
+
+    User.update({
+        _id: req.body.user_id
+    }, {
+        $set: {
+            share_count: req.body.share_count
+        }
+    },
+    function(err, user) {
+        if (err) return res.status(500).send("There was a problem updating the user.")
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).send(JSON.stringify(user));
     });
 });
 

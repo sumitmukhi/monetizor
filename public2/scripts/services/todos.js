@@ -26,6 +26,9 @@ angular.module('mainService', [])
 			update : function(user) {
 				return $http.put('/api/auth/update', user);
 			},
+			updateCount : function(user) {
+				return $http.put('/api/auth/update/count', user);
+			},
 			login : function(user) {
 				// return $http.post('/api/auth/login', user);
 				var deferred = $q.defer();

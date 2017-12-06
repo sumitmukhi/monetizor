@@ -221,7 +221,7 @@ angular.module('homeController', [])
                                 hideMethod: 'fadeOut',
                                 timeOut: 3000
                             };
-                            toastr.success("Error occured. Contact admin!", 'Error !');
+                            toastr.error("Error occured. Contact admin!", 'Error !');
                         }, 500);
                     })
 
@@ -280,9 +280,19 @@ angular.module('homeController', [])
                                 updateUser.user_id = user._id;
                                 updateUser.share_count = parseInt(user.share_count) + 1;
                                 console.log(user, updateUser);
-                                User.update(updateUser)
+                                User.updateCount(updateUser)
                                     .success(function(resp) {
                                         console.log(resp);
+                                        setTimeout(function() {
+                                            toastr.options = {
+                                                closeButton: true,
+                                                progressBar: true,
+                                                showMethod: 'fadeIn',
+                                                hideMethod: 'fadeOut',
+                                                timeOut: 3000
+                                            };
+                                            toastr.success("Post successfully shared!", 'Shared !');
+                                        }, 500);
                                     })
                             })
                     } else {
@@ -547,6 +557,7 @@ angular.module('homeController', [])
                                                     };
                                                     toastr.success('Welcome back '+data.handle, 'Success !');
                                                 }, 500);
+                                                $state.reload();
                                             }, function(error) {
                                                 console.log(error);
                                                 setTimeout(function() {
