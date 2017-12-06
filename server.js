@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var methodOverride = require('method-override');
 var nconf = require('nconf');
+const PORT = process.env.PORT || 3000
 
 
 // MongoDB 
@@ -36,6 +37,8 @@ app.get('*', function(req, res) {
 });
 
 
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
 // Server
-app.listen(3000);
-console.log('API is running on port 3000');
+// app.listen(3000);
+// console.log('API is running on port 3000');
