@@ -439,10 +439,11 @@ angular.module('homeController', [])
                                         $scope.thisPostData.push(to_push);
                                     }
                                 });
-                                to_push = {};
+                                // to_push = {};
                             }
                         })
                     })
+                console.log("$scope.thisPostData", $scope.thisPostData);
             }
 
             function getUserData() {
