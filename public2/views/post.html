@@ -106,7 +106,8 @@
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <button class="btn btn-primary btn-sm" ng-click="share(thisPost)">Share in facebook</button>
+                        <button class="btn btn-primary btn-sm" ng-click="share(thisPost)" ng-if="loggedInUser.fbUserId">Share in facebook</button>
+                        <p class="text-danger" ng-if="!loggedInUser.fbUserId"><a ui-sref="app.profile">Connect with facebook to be able to share!</a></p>
                     </div>
                 </div>
             </div>

@@ -548,6 +548,7 @@ angular.module('homeController', [])
                                                 $cookies.name = data.name;
                                                 $cookies.image = data.image;
                                                 $cookies.fb_access_token = data.fb_access_token;
+                                                $state.go('app.profile');
                                                 setTimeout(function() {
                                                     toastr.options = {
                                                         closeButton: true,
@@ -558,7 +559,6 @@ angular.module('homeController', [])
                                                     };
                                                     toastr.success('Welcome back '+data.handle, 'Success !');
                                                 }, 500);
-                                                $state.reload();
                                             }, function(error) {
                                                 console.log(error);
                                                 setTimeout(function() {
