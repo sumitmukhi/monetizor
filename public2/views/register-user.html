@@ -5,19 +5,27 @@
                 <div class="col-md-3 center">
                     <div class="login-box">
                         <a href="index.html" class="logo-name text-lg text-center">Modern</a>
-                        <p class="text-center m-t-md">Please login into your account.</p>
+                        <p class="text-center m-t-md">Create a Modern's account</p>
                         <div class="alert alert-success">{{message}}</div>
                         <form class="m-t-md">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Username" ng-model="formData.handle" required>
+                            </div>
                             <div class="form-group">
                                 <input type="email" class="form-control" placeholder="Email" ng-model="formData.email" required>
                             </div>
                             <div class="form-group">
+                                <input type="tel" class="form-control" placeholder="Phone" ng-model="formData.phone" required>
+                            </div>
+                            <div class="form-group">
                                 <input type="password" class="form-control" placeholder="Password" ng-model="formData.password" required>
                             </div>
-                            <button type="submit" ng-click="login()" class="btn btn-success btn-block">Login</button>
-                            <a ui-sref="forgot" class="display-block text-center m-t-md text-sm">Forgot Password?</a>
-                            <p class="text-center m-t-xs text-sm">Do not have an account?</p>
-                            <a ui-sref="register" class="btn btn-default btn-block m-t-md">Create an account</a>
+                            <label>
+                                <input type="checkbox"> Agree the terms and policy
+                            </label>
+                            <button type="submit" ng-click="register()" class="btn btn-success btn-block m-t-xs">Submit</button>
+                            <p class="text-center m-t-xs text-sm">Already have an account?</p>
+                            <a ui-sref="login" class="btn btn-default btn-block m-t-xs">Login</a>
                         </form>
                         <p class="text-center m-t-xs text-sm">2015 &copy; Modern by Steelcoders.</p>
                     </div>
@@ -29,3 +37,4 @@
     </div>
     <!-- Page Inner -->
 </main>
+<!-- Page Content -->

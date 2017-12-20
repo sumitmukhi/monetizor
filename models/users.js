@@ -9,6 +9,18 @@ var UserSchema = new mongoose.Schema({
         type: String,
         default: ''
     },
+    phone: {
+        type: String,
+        default: ''
+    },
+    vertical: {
+        type: String,
+        default: ''
+    },
+    company: {
+        type: String,
+        default: ''
+    },
     image: {
         type: String,
         default: ''
@@ -43,7 +55,15 @@ var UserSchema = new mongoose.Schema({
     },
     wallet_address: {
         type: String,
-        default: '0'
+        default: ''
+    },
+    type: {
+        type: String,
+        default: '0' // 0: user, 1: client, 2: admin
+    },
+    status: {
+        type: String,
+        default: '0' // 0: unverified, 1 verified
     }
 });
 mongoose.model('User', UserSchema);

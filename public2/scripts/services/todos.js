@@ -52,6 +52,9 @@ angular.module('mainService', [])
 	            .success(function (data) { deferred.resolve(data); })
 	            .error(function (error) { deferred.reject(error); });
 	            return deferred.promise;
+			},
+			verify : function(id) {
+				return $http.put('/api/auth/verify', { 'id': id });
 			}
 		}
 	}])

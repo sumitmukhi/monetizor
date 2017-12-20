@@ -49,6 +49,16 @@ angular.module('homeController', [])
             if ($state.current.name == 'login' && $scope.userId) {
                 $state.go('app.post');
             }
+            $scope.message = '';
+            $scope.verify = function() {
+                console.log($stateParams.id);
+                User.verify($stateParams.id)
+                    .then(function(response){
+                        console.log(response);
+                        $scope.message = "Email is verified !";
+                        // $state.go('login');
+                    });
+            }
 
             $scope.login = function() {
                 var thisUser = {};
@@ -114,6 +124,9 @@ angular.module('homeController', [])
                 thisUser.handle = $scope.formData.handle;
                 thisUser.email = $scope.formData.email;
                 thisUser.password = $scope.formData.password;
+                thisUser.phone = $scope.formData.phone;
+                thisUser.company = $scope.formData.company;
+                thisUser.vertical = $scope.formData.vertical;
 
                 // console.log("inside createPost ", newPost);
                 User.register(thisUser)
@@ -129,9 +142,10 @@ angular.module('homeController', [])
                                     hideMethod: 'fadeOut',
                                     timeOut: 3000
                                 };
-                                toastr.success("Please login to continue", 'Login successfull !');
+                                toastr.success("Please verify you email to continue", 'Successfully registered !');
                             }, 500);
-                            $state.go('login');
+                            $scope.message= "Please verify you email to continue!"
+                            // $state.go('login');
                         }
                     }, function(error) {
                         console.log(error);

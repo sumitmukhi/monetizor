@@ -13,10 +13,19 @@ monetizor.config(function($stateProvider, $urlRouterProvider, $locationProvider)
         })
 
         .state('register', {
-            url: '/register',
-            templateUrl: '/views/register.html'
+            url: '/register/user',
+            templateUrl: '/views/register-user.html'
         })
 
+        .state('registerClient', {
+            url: '/register/client',
+            templateUrl: '/views/register-client.html'
+        })
+
+        .state('verify', {
+            url: '/verify/email?id',
+            templateUrl: '/views/verify.html'
+        })
 
         .state('app', {
             url: "/app",
