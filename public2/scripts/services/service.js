@@ -26,6 +26,9 @@ angular.module('mainService', [])
 			update : function(user) {
 				return $http.put('/api/auth/update', user);
 			},
+			updateStatus : function(user) {
+				return $http.put('/api/auth/update/status', user);
+			},
 			updateCount : function(user) {
 				return $http.put('/api/auth/update/count', user);
 			},

@@ -2,10 +2,12 @@
     <div class="page-inner">
         <div id="main-wrapper">
             <div class="row">
-                <div class="col-md-3 text-center">
-                        <p class="text-center m-t-xs">Verifying ....</p>
-
-                        {{message}}
+                <div class="col-md-6 col-md-offset-3 text-center">
+                        <p class="text-center m-t-xs" ng-if="message.length == 0">Verifying ....</p>
+                        <div ng-if="message.length != 0">
+                            <h2 class="text-center">{{message}}</h2>
+                            <p class="text-center">Please <a href="/">login</a> to continue!</p>
+                        </div>
                     </div>
                 </div>
             </div>

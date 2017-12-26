@@ -6,7 +6,7 @@
                     <div class="login-box">
                         <a href="index.html" class="logo-name text-lg text-center">Modern</a>
                         <p class="text-center m-t-md">Create a Modern's account</p>
-                        <div class="alert alert-success">{{message}}</div>
+                        <div class="alert alert-success" ng-if="message.length > 0">{{message}}</div>
                         <form class="m-t-md">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Username" ng-model="formData.handle" required>
@@ -24,6 +24,7 @@
                                 <input type="checkbox"> Agree the terms and policy
                             </label>
                             <button type="submit" ng-click="register()" class="btn btn-success btn-block m-t-xs">Submit</button>
+                            <a ui-sref="registerClient" class="m-t-xs btn btn-default btn-block m-t-xs">Register As Client</a>
                             <p class="text-center m-t-xs text-sm">Already have an account?</p>
                             <a ui-sref="login" class="btn btn-default btn-block m-t-xs">Login</a>
                         </form>

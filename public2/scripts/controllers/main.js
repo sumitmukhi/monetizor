@@ -32,6 +32,7 @@ angular.module('homeController', [])
             $scope.loggedInUser.email = $cookies.email;
             $scope.loggedInUser.fbUserId = $cookies.fbUserId;
             $scope.loggedInUser.id = $cookies._id;
+            $scope.loggedInUser.type = $cookies.type;
 
             if( $cookies.image){
                 $scope.loggedInUser.image = $cookies.image;
@@ -55,7 +56,14 @@ angular.module('homeController', [])
                 User.verify($stateParams.id)
                     .then(function(response){
                         console.log(response);
-                        $scope.message = "Email is verified !";
+                        $scope.user = {
+                            'status' : '1',
+                            'email' : response.data.email
+                        };
+                        User.updateStatus($scope.user).then(function(data) {
+                            console.log("Mongo data : " + data);
+                            $scope.message = "Email is verified !";
+                        })
                         // $state.go('login');
                     });
             }
@@ -76,20 +84,35 @@ angular.module('homeController', [])
                             User.authenticate(authData)
                                 .then(function(data) {
                                     console.log(data);
-                                    $cookies.handle = data.handle;
-                                    $cookies.email = data.email;
-                                    $cookies._id = data._id
-                                    setTimeout(function() {
-                                        toastr.options = {
-                                            closeButton: true,
-                                            progressBar: true,
-                                            showMethod: 'fadeIn',
-                                            hideMethod: 'fadeOut',
-                                            timeOut: 3000
-                                        };
-                                        toastr.success('Welcome back '+data.handle, 'Success !');
-                                    }, 500);
-                                    $state.go('app.dashboard');
+                                    if(data.status == '1'){
+                                        $cookies.handle = data.handle;
+                                        $cookies.email = data.email;
+                                        $cookies._id = data._id;
+                                        $cookies.type = data.type;
+                                        setTimeout(function() {
+                                            toastr.options = {
+                                                closeButton: true,
+                                                progressBar: true,
+                                                showMethod: 'fadeIn',
+                                                hideMethod: 'fadeOut',
+                                                timeOut: 3000
+                                            };
+                                            toastr.success('Welcome back '+data.handle, 'Success !');
+                                        }, 500);
+                                        $state.go('app.dashboard');
+                                    }
+                                    else{
+                                        setTimeout(function() {
+                                            toastr.options = {
+                                                closeButton: true,
+                                                progressBar: true,
+                                                showMethod: 'fadeIn',
+                                                hideMethod: 'fadeOut',
+                                                timeOut: 3000
+                                            };
+                                            toastr.warning('Please verify your email!');
+                                        }, 500);
+                                    }
                                 }, function(error) {
                                     console.log(error);
                                     setTimeout(function() {

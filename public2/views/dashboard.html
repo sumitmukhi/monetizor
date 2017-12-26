@@ -1,4 +1,14 @@
 <!-- Page Sidebar -->
+<style>
+    .post-div{
+        transition: all 0.4s ease;
+    }
+    .post-div:hover{
+        cursor: pointer;
+        background: #6f6b6b;
+        color: #fff;
+    }
+</style>
 <div class="page-inner" ng-controller="mainController">
     <div class="page-breadcrumb">
         <ol class="breadcrumb container">
@@ -8,17 +18,22 @@
     </div>
     <div class="page-title">
         <div class="container">
-            <h3>Dashboard</h3>
+            <h3>{{loggedInUser.handle}}'s Dashboard</h3>
         </div>
     </div>
-    <div id="main-wrapper" class="container">
+    <div id="main-wrapper" class="container" ng-init="getUserProfile();" style="margin-top: 1%">
         <div class="row">
+            <!-- {{profileData | json}} -->
+            <div class="col-md-12">
+                <h4>Stats Overview</h4>
+                <hr>
+            </div>
             <div class="col-lg-3 col-md-6">
                 <div class="panel info-box panel-white">
                     <div class="panel-body">
                         <div class="info-box-stats">
-                            <p class="counter">107,200</p>
-                            <span class="info-box-title">User activity this month</span>
+                            <p class="counter">{{profileData.share_count}}</p>
+                            <span class="info-box-title">Total Shares</span>
                         </div>
                         <div class="info-box-icon">
                             <i class="icon-users"></i>
@@ -36,8 +51,8 @@
                 <div class="panel info-box panel-white">
                     <div class="panel-body">
                         <div class="info-box-stats">
-                            <p class="counter">340,230</p>
-                            <span class="info-box-title">Page views</span>
+                            <p class="counter">${{profileData.share_count * 0.01}}</p>
+                            <span class="info-box-title">Total ethers</span>
                         </div>
                         <div class="info-box-icon">
                             <i class="icon-eye"></i>
@@ -55,8 +70,8 @@
                 <div class="panel info-box panel-white">
                     <div class="panel-body">
                         <div class="info-box-stats">
-                            <p>$<span class="counter">653,000</span></p>
-                            <span class="info-box-title">Monthly revenue goal</span>
+                            <p>$<span class="counter">{{profileData.credited_count * 0.01}}</span></p>
+                            <span class="info-box-title">Ethres Withdrawn</span>
                         </div>
                         <div class="info-box-icon">
                             <i class="icon-basket"></i>
@@ -74,8 +89,8 @@
                 <div class="panel info-box panel-white">
                     <div class="panel-body">
                         <div class="info-box-stats">
-                            <p class="counter">47,500</p>
-                            <span class="info-box-title">New emails recieved</span>
+                            <p class="counter">{{posts.count - profileData.share_count}}</p>
+                            <span class="info-box-title">Pending Posts</span>
                         </div>
                         <div class="info-box-icon">
                             <i class="icon-envelope"></i>
@@ -92,16 +107,21 @@
         </div>
         <!-- Row -->
         <div class="row">
+            <div class="col-md-12">
+                <h4>All Posts</h4>
+                <hr>
+            </div>
             <div class="col-md-6" ng-repeat="post in posts">
-
-                <div class="panel panel-white" ui-sref="app.post({ postId : post._id })">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">{{post.title}}</h3>
+                    <div class="panel panel-white post-div" ui-sref="app.post({ postId : post._id })">
+                        <!-- <a class="post-div"> -->
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{post.title}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>{{post.description | limitTo: 200}}..</p>
+                        </div>                         
+                        <!-- </a> -->
                     </div>
-                    <div class="panel-body">
-                        <p>{{post.description | limitTo: 200}}..</p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

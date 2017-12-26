@@ -20,10 +20,10 @@
                     <li>
                         <a ui-sref="app.profile"><span class="menu-icon icon-user"></span>&ensp; Profile</a>
                     </li>
-                    <li>
+                    <li ng-if="loggedInUser.type == '1'">
                         <a ui-sref="app.create"><span class="menu-icon icon-pencil"></span>&ensp; Create post</a>
                     </li>
-                    <li>
+                    <li ng-if="loggedInUser.type == '1'">
                         <a ui-sref="app.admin"><span class="menu-icon icon-lock"></span>&ensp; Admin</a>
                     </li>
                 </ul>
@@ -35,7 +35,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-list" role="menu">
                             <li role="presentation"><a ui-sref="app.profile"><i class="fa fa-user"></i>Profile</a></li>
-                            <li role="presentation"><a href="login.html"><i class="fa fa-sign-out m-r-xs"></i>Log out</a></li>
+                            <li role="presentation"><a ui-sref="login"><i class="fa fa-sign-out m-r-xs"></i>Log out</a></li>
                         </ul>
                     </li>
                 </ul>
