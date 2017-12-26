@@ -58,6 +58,9 @@ angular.module('mainService', [])
 			},
 			verify : function(id) {
 				return $http.put('/api/auth/verify', { 'id': id });
+			},
+			verifyPhone : function(user) {
+				return $http.put('/api/auth/verify/phone', user);
 			}
 		}
 	}])

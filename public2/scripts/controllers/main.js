@@ -165,9 +165,9 @@ angular.module('homeController', [])
                                     hideMethod: 'fadeOut',
                                     timeOut: 3000
                                 };
-                                toastr.success("Please verify you email to continue", 'Successfully registered !');
+                                toastr.success("Please verify your phone", 'Successfully registered !');
                             }, 500);
-                            $scope.message= "Please verify you email to continue!"
+                            $scope.message= "Please verify your phone!"
                             // $state.go('login');
                         }
                     }, function(error) {
@@ -181,6 +181,42 @@ angular.module('homeController', [])
                                 timeOut: 3000
                             };
                             toastr.error(error, 'Error !');
+                        }, 1000);
+                    });
+            }
+
+            $scope.verifyPhone = function(code, phone) {
+                var thisUser = {};
+                thisUser.code = code;
+                thisUser.phone = phone;
+
+                console.log("inside verify phone ", code, phone);
+                User.verifyPhone(thisUser)
+                    .then(function(response) {
+                        console.log(response);
+                        setTimeout(function() {
+                            toastr.options = {
+                                closeButton: true,
+                                progressBar: true,
+                                showMethod: 'fadeIn',
+                                hideMethod: 'fadeOut',
+                                timeOut: 3000
+                            };
+                            toastr.success("Verified! Please verify your email to continue", 'Successfully registered !');
+                        }, 500);
+                        $scope.message= "Verified! Please verify your email to continue!"
+                        // $state.go('login');
+                    }, function(error) {
+                        console.log(error);
+                        setTimeout(function() {
+                            toastr.options = {
+                                closeButton: true,
+                                progressBar: true,
+                                showMethod: 'fadeIn',
+                                hideMethod: 'fadeOut',
+                                timeOut: 3000
+                            };
+                            toastr.error(error.data.message, "Error!");
                         }, 1000);
                     });
             }
