@@ -559,7 +559,6 @@ angular.module('homeController', [])
                                 // $cookies.name = data.name;
                                 // $cookies.image = data.image;
                                 // $cookies.fb_access_token = data.fb_access_token;
-                                // window.location.reload();
 
                                 setTimeout(function() {
                                     toastr.options = {
@@ -607,7 +606,8 @@ angular.module('homeController', [])
                                 });
                             });
                         });
-                        $state.relod();
+                        // $state.reload();
+                        window.location.reload();
                     } 
                     else {}
                 });
