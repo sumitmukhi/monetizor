@@ -1,7 +1,7 @@
 angular.module('homeController', [])
 
-    .controller('initController', ['$scope', '$rootScope', '$http', '$state', '$stateParams', '$cookies', '$cookieStore', 'User', 'Post', 'Share', 'Tag',
-        function($scope, $rootScope, $http, $state, $stateParams, $cookies, $cookieStore, User, Post, Share, Tag) {
+    .controller('initController', ['$scope', '$rootScope', '$http', '$state', '$stateParams', '$cookies', '$cookieStore', 'User', 'Post', 'Share', 'Tag', '$timeout',
+        function($scope, $rootScope, $http, $state, $stateParams, $cookies, $cookieStore, User, Post, Share, Tag, $timeout) {
             
             if($state.current.name = "login"){
                 $scope.mainClass = "page-login";
@@ -16,8 +16,8 @@ angular.module('homeController', [])
         }
     ])
 
-    .controller('mainController', ['$scope', '$rootScope', '$http', '$state', '$stateParams', '$cookies', '$cookieStore', 'User', 'Post', 'Share', 'Tag',
-        function($scope, $rootScope, $http, $state, $stateParams, $cookies, $cookieStore, User, Post, Share, Tag) {
+    .controller('mainController', ['$scope', '$rootScope', '$http', '$state', '$stateParams', '$cookies', '$cookieStore', 'User', 'Post', 'Share', 'Tag', '$timeout',
+        function($scope, $rootScope, $http, $state, $stateParams, $cookies, $cookieStore, User, Post, Share, Tag, $timeout) {
             
             $scope.formData = {};
             $scope.postData = {};
@@ -590,6 +590,9 @@ angular.module('homeController', [])
                                                 timeOut: 3000
                                             };
                                             toastr.success('Welcome back '+data.handle, 'Success !');
+                                            $timeout(function() {
+                                                window.location.reload();
+                                            }, 2000);
                                         }, 500);
                                     }, function(error) {
                                         console.log(error);
@@ -607,7 +610,6 @@ angular.module('homeController', [])
                             });
                         });
                         // $state.reload();
-                        window.location.reload();
                     } 
                     else {}
                 });
