@@ -12,12 +12,15 @@
         </div>
     </div> -->
     <div id="main-wrapper" class="container" ng-init="getPost()">
-        <div class="row">
+        <div class="row" ng-if="loggedInUser.type == '1'">
+            <div class="col-md-12" ng-if="!loggedInUser.fbUserId">
+                <div class="alert alert-danger"><i class="fa fa-warning"></i> &ensp;<a ui-sref="app.profile">Connect with facebook!</a></div>
+            </div>
             <div class="col-lg-3 col-md-6">
                 <div class="panel info-box panel-white">
                     <div class="panel-body">
                         <div class="info-box-stats">
-                            <p class="counter">{{thisPost.share_count || '0'}}</p>
+                            <p class="counter">{{thisPost.share_count}}</p>
                             <span class="info-box-title">Total Shares</span>
                         </div>
                         <div class="info-box-icon">
@@ -36,8 +39,8 @@
                 <div class="panel info-box panel-white">
                     <div class="panel-body">
                         <div class="info-box-stats">
-                            <p class="counter">1</p>
-                            <span class="info-box-title">Post views</span>
+                            <p class="counter">{{thisPost.like_count || '0'}}</p>
+                            <span class="info-box-title">Total likes</span>
                         </div>
                         <div class="info-box-icon">
                             <i class="icon-eye"></i>
@@ -55,8 +58,8 @@
                 <div class="panel info-box panel-white">
                     <div class="panel-body">
                         <div class="info-box-stats">
-                            <p><span class="counter">0</span></p>
-                            <span class="info-box-title">Total likes</span>
+                            <p><span class="counter">{{thisPost.comment_count || '0'}}</span></p>
+                            <span class="info-box-title">Total comments</span>
                         </div>
                         <div class="info-box-icon">
                             <i class="icon-like"></i>
@@ -74,8 +77,8 @@
                 <div class="panel info-box panel-white">
                     <div class="panel-body">
                         <div class="info-box-stats">
-                            <p class="counter">0</p>
-                            <span class="info-box-title">Total comments</span>
+                            <p class="counter">{{thisPost.budget}}</p>
+                            <span class="info-box-title">Budget</span>
                         </div>
                         <div class="info-box-icon">
                             <i class="icon-envelope"></i>
@@ -105,7 +108,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-footer">
+                    <div class="panel-footer" ng-if="loggedInUser.type == '0'">
                         <button class="btn btn-primary btn-sm" ng-click="share(thisPost)" ng-if="loggedInUser.fbUserId">Share in facebook</button>
                         <p class="text-danger" ng-if="!loggedInUser.fbUserId"><i class="fa fa-warning"></i> &ensp;<a ui-sref="app.profile">Connect with facebook to be able to share!</a></p>
                     </div>

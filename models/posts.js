@@ -33,7 +33,40 @@ var postSchema = new mongoose.Schema({
     share_count: {
         type: String,
         default: ''
-    }
+    },
+    like_count: {
+        type: String,
+        default: ''
+    },
+    comment_count: {
+        type: String,
+        default: ''
+    },
+    cost_per_share: {
+        type: String,
+        default: ''
+    },
+    cost_per_like: {
+        type: String,
+        default: ''
+    },
+    cost_per_comment: {
+        type: String,
+        default: ''
+    },
+    budget: {
+        type: String,
+        default: ''
+    },
+    cost_per_like: {
+        type: String,
+        default: ''
+    },
+    created_by_id: {
+        type: String,
+        default: ''
+    },
+    timestamps: {} 
 });
 
 // Return Model

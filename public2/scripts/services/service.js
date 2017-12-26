@@ -81,6 +81,9 @@ angular.module('mainService', [])
 			},
 			update : function(id, data) {
 				return $http.put('/api/post/'+id, data);
+			},
+			updateCount : function(id, data) {
+				return $http.put('/api/post/?fb_share_id='+id, data);
 			}
 		}
 	}])

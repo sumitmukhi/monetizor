@@ -10,8 +10,8 @@ var authy = require('authy')('osW3qutgkjmuGuyk4OY1G8z85d7ZYNk9');
 var smtpTransport = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-        user: "sumit@tranzita.com",
-        pass: "9964947700"
+        user: "noreply@chainwolf.com",
+        pass: "chainwolfnoreply"
     }
 });
 var rand, mailOptions, host, link;
