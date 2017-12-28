@@ -349,17 +349,18 @@ angular.module('homeController', [])
                     'Content-Type': 'application/x-www-form-urlencoded'
                 };
 
+                function longsToStrings(response) {
+                    //console.log("transforming response");
+                    var numbers = /("[^"]*":\s*)(\d{15,})([,}])/g;
+                    var newResponse = response.replace(numbers, "$1\"$2\"$3");
+                    return newResponse;
+                }
+
                 $http({
                     method: 'POST',
                     url: walletUrl,
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
                     transformRequest: function(obj) {
-                        var str = [];
-                        for (var p in obj)
-                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                        return str.join("&");
-                    },
-                    transformResponse: function(obj) {
                         var str = [];
                         for (var p in obj)
                             str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
@@ -376,8 +377,16 @@ angular.module('homeController', [])
                             hideMethod: 'fadeOut',
                             timeOut: 3000
                         };
-                        toastr.success("Payment Successfull!"+resp, 'Success !');
+                        toastr.success("txHash : "+resp.data.txHash, 'Payment Success!');
                     }, 500);
+                    data.user_id = $cookies.userId;
+                    data.credits = 0;
+                    User.updateBalance(data)
+                        .then(function(response) {
+                            console.log(response);
+                        }, function(err){
+                            console.log(err);
+                        });
                 }, function(error){
                     console.log(error);
                     setTimeout(function() {

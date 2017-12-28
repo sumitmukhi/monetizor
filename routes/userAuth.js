@@ -117,7 +117,7 @@ router.post('/register', function(req, res) {
                         } else {
                             console.log("Message sent: " + response.message);
                             // res.end("sent");
-                            authy.phones().verification_start(req.body.phone, '91', 'sms', function(err, resp) {
+                            authy.phones().verification_start(req.body.phone, '1', 'sms', function(err, resp) {
                                 if (error) {
                                     console.log(err);
                                     // res.end("error");
