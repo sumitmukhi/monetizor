@@ -360,7 +360,7 @@ angular.module('homeController', [])
                         return str.join("&");
                     },
                     data: data
-                }).success(function(response) {
+                }).then(function(response) {
                     console.log(response);
                     setTimeout(function() {
                         toastr.options = {
@@ -370,21 +370,9 @@ angular.module('homeController', [])
                             hideMethod: 'fadeOut',
                             timeOut: 3000
                         };
-                        toastr.success("Payment Successfull: "+response.data, 'Success !');
+                        toastr.success("Payment Successfull: "+response, 'Success !');
                     }, 500);
                 })
-                .error(function(data) {
-                    setTimeout(function() {
-                        toastr.options = {
-                            closeButton: true,
-                            progressBar: true,
-                            showMethod: 'fadeIn',
-                            hideMethod: 'fadeOut',
-                            timeOut: 3000
-                        };
-                        toastr.error("Contact admin!", 'Error !');
-                    }, 500);
-                });
             }
 
             $scope.share = function(post) {
