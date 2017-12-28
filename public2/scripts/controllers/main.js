@@ -437,10 +437,10 @@ angular.module('homeController', [])
                         updatePost._id = post._id;
                         updatePost.fb_share_id = response.post_id;
                         if(post.share_count){
-                            updatePost.share_count = parseInt(post.share_count) + '0';
+                            updatePost.share_count = parseInt(post.share_count) + 1;
                         }
                         else{
-                            updatePost.share_count = '0';
+                            updatePost.share_count = '1';
                         }
 
                         Post.update(post._id, updatePost)
@@ -666,14 +666,12 @@ angular.module('homeController', [])
 
                                                             console.log($scope.data);
 
-                                                            if($scope.data.share_count || $scope.data.like_count || $scope.data.comment_count){
-                                                                User.updateCount($scope.data)
-                                                                    .then(function(response) {
-                                                                        console.log(response);
-                                                                    }, function(err){
-                                                                        console.log(err);
-                                                                    });
-                                                            }
+                                                            User.updateCount($scope.data)
+                                                                .then(function(response) {
+                                                                    console.log(response);
+                                                                }, function(err){
+                                                                    console.log(err);
+                                                                });
                                                         });
                                                 }
 
