@@ -370,7 +370,19 @@ angular.module('homeController', [])
                             hideMethod: 'fadeOut',
                             timeOut: 3000
                         };
-                        toastr.success("Payment Successfull: "+response, 'Success !');
+                        toastr.success("Payment Successfull!", 'Success !');
+                    }, 500);
+                }, function(message){
+                    console.log(message);
+                    setTimeout(function() {
+                        toastr.options = {
+                            closeButton: true,
+                            progressBar: true,
+                            showMethod: 'fadeIn',
+                            hideMethod: 'fadeOut',
+                            timeOut: 3000
+                        };
+                        toastr.success("Payment Successfull!", 'Success !');
                     }, 500);
                 })
             }
