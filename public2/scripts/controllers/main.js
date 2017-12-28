@@ -228,7 +228,12 @@ angular.module('homeController', [])
                     .then(function(user) {
                         $scope.profileData = user;
                         var total = parseInt($scope.profileData.share_count)+parseInt($scope.profileData.like_count)+parseInt($scope.profileData.comment_count);
-                        $scope.totalBalance = total * 0.01;
+                        if(isNaN(total)){
+                            $scope.totalBalance = 0;
+                        }
+                        else{
+                            $scope.totalBalance = total * 0.01;
+                        }
                         console.log($scope.totalBalance);
                         var data = {};
                         data.user_id = user._id;
