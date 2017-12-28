@@ -15,10 +15,10 @@
                     <li>
                         <a href="javascript:void(0);" class="waves-effect waves-button waves-classic sidebar-toggle"><i class="fa fa-bars"></i></a>
                      <li class="active">
-                        <a ui-sref="app.dashboard"><span class="menu-icon icon-speedometer"></span>&ensp; Dashboard</a>
+                        <a ui-sref="app.dashboard" ng-click="getSharedData();"><span class="menu-icon icon-speedometer"></span>&ensp; Dashboard</a>
                     </li>
                     <li>
-                        <a ui-sref="app.profile"><span class="menu-icon icon-user"></span>&ensp; Profile</a>
+                        <a ui-sref="app.profile" ng-click="getSharedData();"><span class="menu-icon icon-user"></span>&ensp; Profile</a>
                     </li>
                     <li ng-if="loggedInUser.type == '1'">
                         <a ui-sref="app.create"><span class="menu-icon icon-pencil"></span>&ensp; Create post</a>

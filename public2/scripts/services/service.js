@@ -29,8 +29,11 @@ angular.module('mainService', [])
 			updateStatus : function(user) {
 				return $http.put('/api/auth/update/status', user);
 			},
-			updateCount : function(user) {
+			updateShare : function(user) {
 				return $http.put('/api/auth/update/share', user);
+			},
+			updateCount : function(user) {
+				return $http.put('/api/auth/update/count', user);
 			},
 			login : function(user) {
 				// return $http.post('/api/auth/login', user);

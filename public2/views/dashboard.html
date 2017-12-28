@@ -52,27 +52,8 @@
                 <div class="panel info-box panel-white">
                     <div class="panel-body">
                         <div class="info-box-stats">
-                            <p class="counter">${{profileData.share_count * 0.01}}</p>
-                            <span class="info-box-title">Total ethers</span>
-                        </div>
-                        <div class="info-box-icon">
-                            <i class="icon-eye"></i>
-                        </div>
-                        <div class="info-box-progress">
-                            <div class="progress progress-xs progress-squared bs-n">
-                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6" ng-if="loggedInUser.type == '0'">
-                <div class="panel info-box panel-white">
-                    <div class="panel-body">
-                        <div class="info-box-stats">
-                            <p>$<span class="counter">{{profileData.credited_count * 0.01}}</span></p>
-                            <span class="info-box-title">Ethres Withdrawn</span>
+                            <p><span class="counter">{{profileData.like_count}}</span></p>
+                            <span class="info-box-title">Total Likes</span>
                         </div>
                         <div class="info-box-icon">
                             <i class="icon-basket"></i>
@@ -90,8 +71,8 @@
                 <div class="panel info-box panel-white">
                     <div class="panel-body">
                         <div class="info-box-stats">
-                            <p class="counter">{{posts.count - profileData.share_count}}</p>
-                            <span class="info-box-title">Pending Posts</span>
+                            <p class="counter">{{profileData.comment_count}}</p>
+                            <span class="info-box-title">Total Comments</span>
                         </div>
                         <div class="info-box-icon">
                             <i class="icon-envelope"></i>
@@ -99,6 +80,25 @@
                         <div class="info-box-progress">
                             <div class="progress progress-xs progress-squared bs-n">
                                 <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" ng-if="loggedInUser.type == '0'">
+                <div class="panel info-box panel-white">
+                    <div class="panel-body">
+                        <div class="info-box-stats">
+                            <p class="counter">${{(profileData.share_count+profileData.like_count+profileData.comment_count) * 0.01}}</p>
+                            <span class="info-box-title">Total ethers</span>
+                        </div>
+                        <div class="info-box-icon">
+                            <i class="icon-eye"></i>
+                        </div>
+                        <div class="info-box-progress">
+                            <div class="progress progress-xs progress-squared bs-n">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
                                 </div>
                             </div>
                         </div>

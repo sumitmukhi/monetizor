@@ -49,6 +49,14 @@ var UserSchema = new mongoose.Schema({
         type: String,
         default: '0'
     },
+    like_count: {
+        type: String,
+        default: ''
+    },
+    comment_count: {
+        type: String,
+        default: ''
+    },
     credited_count: {
         type: String,
         default: '0'

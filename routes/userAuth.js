@@ -220,6 +220,29 @@ router.put('/update/share', function(req, res) {
         });
 });
 
+router.put('/update/count', function(req, res) {
+    User.findOne({ _id: req.body.user_id }, function(err, user) {
+        if (err) return res.status(500).send('Error on the server.');
+        console.log(user);
+        
+        User.update({
+                _id: req.body.user_id
+            }, {
+                $set: {
+                    share_count: req.body.share_count.toString(),
+                    like_count: req.body.like_count.toString(),
+                    comment_count: req.body.comment_count.toString()
+                }
+            },
+            function(err, user) {
+                if (err) return res.status(500).send("There was a problem updating the user.")
+                res.setHeader('Content-Type', 'application/json');
+                res.status(200).send(JSON.stringify(user));
+            });
+    });
+
+});
+
 router.put('/update/status', function(req, res) {
 
     User.update({
