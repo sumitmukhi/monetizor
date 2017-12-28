@@ -17,6 +17,18 @@ var shareSchema = new mongoose.Schema({
     user_id: {
         type: String,
         default: ''
+    },
+    share_count: {
+        type: String,
+        default: ''
+    },
+    like_count: {
+        type: String,
+        default: ''
+    },
+    comment_count: {
+        type: String,
+        default: ''
     }
 });
 

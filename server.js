@@ -1,11 +1,25 @@
 // Dependencies
 var express = require('express');
-var mongoose  = require('mongoose');
+var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var methodOverride = require('method-override');
 var nconf = require('nconf');
 const PORT = process.env.PORT || 3000
+
+// var FB = require('facebook-node');
+// FB.setApiVersion("v2.2");
+
+// var FB = require('facebook-node');
+
+// FB.api('4', function(res) {
+//     if (!res || res.error) {
+//         console.log(!res ? 'error occurred' : res.error);
+//         return;
+//     }
+//     console.log(res.id);
+//     console.log(res.name);
+// });
 
 
 // MongoDB 
@@ -14,9 +28,9 @@ mongoose.connect('mongodb://admin:sumit1992*@ds119436.mlab.com:19436/sandbox');
 
 // Express 
 var app = express();
-app.use(bodyParser.urlencoded({ extended : true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(bodyParser.json({ type: 'application/vnd.api+json' })); 
+app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(methodOverride('X-HTTP-Method-Override'));
 
 // Routes

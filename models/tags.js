@@ -10,6 +10,7 @@ var tagSchema = new mongoose.Schema({
         type: String,
         default: ''
     }
+
 });
 
 module.exports = restful.model('Tags', tagSchema);

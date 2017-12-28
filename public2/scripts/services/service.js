@@ -30,7 +30,7 @@ angular.module('mainService', [])
 				return $http.put('/api/auth/update/status', user);
 			},
 			updateCount : function(user) {
-				return $http.put('/api/auth/update/count', user);
+				return $http.put('/api/auth/update/share', user);
 			},
 			login : function(user) {
 				// return $http.post('/api/auth/login', user);
@@ -98,6 +98,9 @@ angular.module('mainService', [])
 			},
 			getall : function() {
 				return $http.get('/api/share/all');
+			},
+			update : function(id, data) {
+				return $http.put('/api/share?fb_user_id='+id, data);
 			}
 		}
 	}])

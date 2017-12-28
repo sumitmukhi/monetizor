@@ -324,20 +324,27 @@ angular.module('homeController', [])
             $scope.share = function(post) {
                 console.log(post);
                 FB.ui({
-                    method: 'share_open_graph',
-                    action_type: 'og.shares',
-                    action_properties: JSON.stringify({
-                        object: {
-                            'og:url': post.url, // your url to share
-                            'og:title': post.title,
-                            'og:site_name': post.caption,
-                            'og:description': post.description,
-                            'og:image': post.image,
-                            'og:image:width': '200', //size of image in pixel
-                            'og:image:height': '200',
-                            'fb:app_id': 154544875148760
-                        }
-                    })
+                    // method: 'share_open_graph',
+                    // action_type: 'og.shares',
+                    // action_properties: JSON.stringify({
+                    //     object: {
+                    //         'og:url': post.url, // your url to share
+                    //         'og:title': post.title,
+                    //         'og:site_name': post.caption,
+                    //         'og:description': post.description,
+                    //         'og:image': post.image,
+                    //         'og:image:width': '200', //size of image in pixel
+                    //         'og:image:height': '200',
+                    //         'fb:app_id': 154544875148760
+                    //     }
+                    // })
+
+                    method : 'feed',
+                    link : post.url,
+                    picture : post.image,
+                    caption : post.caption,
+                    name : post.title,
+                    description : post.description
                 }, function(response) {
                     if (response) {
                         console.log("fb share post id : ", response, post._id);
@@ -508,62 +515,75 @@ angular.module('homeController', [])
                 FB.api('/me/accounts', { access_token: access_token },
                     function(response) {
                         console.log("me/accounts ",response);
-                        angular.forEach(response.data, function(val, key) {
-                            if (val.name == "Tover") {
-                                page_access_token = val.access_token;
-                                // console.log("Page access token ", access_token);
-                                FB.api('/me/tagged', { access_token: page_access_token },
-                                    function(response) {
-                                        console.log("all tagged data : "+response.data);
-                                        angular.forEach(response.data, function(value, key) {
-                                            var tagData = {};
-                                            console.log(value);
-                                            tagData.tag_id = value.id;
-                                            tagData.tag_time = value.tagged_time;
+                        if(response.error){
+                            $scope.checkLoginState();
+                        }
+                        else{
+                            angular.forEach(response.data, function(val, key) {
+                                if (val.name == "Tover") {
+                                    page_access_token = val.access_token;
+                                    // console.log("Page access token ", access_token);
+                                    FB.api('/me/tagged', { access_token: page_access_token },
+                                        function(response) {
+                                            console.log("all tagged data : "+response.data);
+                                            angular.forEach(response.data, function(value, key) {
+                                                var tagData = {};
+                                                console.log(value);
+                                                tagData.tag_id = value.id;
+                                                tagData.tag_time = value.tagged_time;
 
-                                            // Tag.create(tagData)
-                                            //     .success(function(response) {
-                                            //         var resp = JSON.stringify(response);
-                                            //         // console.log("New tags : " + resp);
-                                            //     });
-                                            var split_id = value.id.split('_');
-                                            // if(split_id[0] == user_id){
-                                            //     console.log(value);
-                                            //     FB.api('/'+value.id+'?fields={likes,comments,shares}', {access_token : $scope.page_access_token},
-                                            //     function(response) {
-                                            //         console.log(response)
-                                            //     });
-                                            // }
+                                                // Tag.create(tagData)
+                                                //     .success(function(response) {
+                                                //         var resp = JSON.stringify(response);
+                                                //         // console.log("New tags : " + resp);
+                                                //     });
+                                                var split_id = value.id.split('_');
+                                                // if(split_id[0] == user_id){
+                                                //     console.log(value);
+                                                //     FB.api('/'+value.id+'?fields={likes,comments,shares}', {access_token : $scope.page_access_token},
+                                                //     function(response) {
+                                                //         console.log(response)
+                                                //     });
+                                                // }
 
-                                            if(split_id[1] != '1757219684300308' && split_id[1] != '10213749241141505' && split_id[1] != '10154893949016641'){
-                                                FB.api('/'+value.id+'?fields=shares,likes,comments', {access_token : page_access_token},
-                                                    function(response) {
-                                                        console.log(response);
-                                                        $scope.data = {};
-                                                        if(angular.isDefined(response.shares)){
-                                                            $scope.data.share_count = response.shares.count;
-                                                        }
-                                                        if(angular.isDefined(response.likes)){
-                                                            $scope.data.like_count = response.likes.data.length;
-                                                        }
-                                                        if(angular.isDefined(response.comments)){
-                                                            $scope.data.comment_count = response.comments.data.length;
-                                                        }
-                                                        console.log(split_id[1], share_count, like_count, comment_count);
-                                                        Post.updateCount(split_id[1], $scope.data)
-                                                            .then(function(response) {
-                                                                console.log(response);
-                                                            }, function(err){
-                                                                console.log(err);
-                                                            });   
-                                                    });
-                                            }
+                                                if(split_id[1] != '1757219684300308' && split_id[1] != '10213749241141505' && split_id[1] != '10154893949016641'){
+                                                    FB.api('/'+value.id+'?fields=shares,likes,comments', {access_token : page_access_token},
+                                                        function(response) {
+                                                            console.log(response);
+                                                            $scope.data = {};
+                                                            if(angular.isDefined(response.shares)){
+                                                                $scope.data.share_count = response.shares.count.toString();
+                                                            }
+                                                            if(angular.isDefined(response.likes)){
+                                                                $scope.data.like_count = response.likes.data.length.toString();
+                                                            }
+                                                            if(angular.isDefined(response.comments)){
+                                                                $scope.data.comment_count = response.comments.data.length.toString();
+                                                            }
+                                                            console.log(split_id[1], $scope.data.share_count, $scope.data.like_count, $scope.data.comment_count);
+                                                            // var fsid = int(split_id[1])-2;
+                                                            try{
+                                                                if($scope.data.share_count || $scope.data.like_count || $scope.data.comment_count){
+                                                                    Share.update(split_id[0], $scope.data)
+                                                                        .then(function(response) {
+                                                                            console.log(response);
+                                                                        }, function(err){
+                                                                            console.log(err);
+                                                                        });
+                                                                }
+                                                            }
+                                                            catch (e){
+                                                                console.log("Error : ", e);   
+                                                            }
+                                                        });
+                                                }
 
-                                        })
-                                    }
-                                );
-                            }
-                        })
+                                            })
+                                        }
+                                    );
+                                }
+                            })
+                        }
                     }
 
                 );
@@ -637,12 +657,6 @@ angular.module('homeController', [])
 
                             User.update($scope.user).success(function(data) {
                                 console.log("Mongo data : " + data, $state.current.name);
-                                // $cookies.userId = data._id;
-                                // $cookies.fbUserId = data.fb_id;
-                                // $cookies.name = data.name;
-                                // $cookies.image = data.image;
-                                // $cookies.fb_access_token = data.fb_access_token;
-
                                 setTimeout(function() {
                                     toastr.options = {
                                         closeButton: true,
@@ -692,10 +706,15 @@ angular.module('homeController', [])
                                 });
                             });
                         });
-                        // $state.reload();
                     } 
-                    else {}
+                    else {
+                        console.log('Not connected');
+                    }
                 });
             }
+
+            // if($scope.loggedInUser.fbUserId){
+            //     $scope.getLoginCreds();
+            // }
         }
     ]);
