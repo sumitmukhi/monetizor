@@ -62,6 +62,10 @@
                                     <input type="text" class="form-control" ng-model="walletAddress">
                                 </div>
                                 <button type="submit" class="btn btn-primary" ng-click="creditEther(walletAddress, profileData.credited_count)">Withdraw</button>
+                                <div class="alert alert-success" ng-if="paymentmsg.length > 0">
+                                    <strong>Payment Success!</strong>
+                                    <p>txHash : <strong>{{paymentmsg}}</strong></p>
+                                </div>
                             </form>
                         </div>
                     </div>

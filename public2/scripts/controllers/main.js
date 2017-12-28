@@ -333,6 +333,8 @@ angular.module('homeController', [])
                 }
             }
 
+            $scope.paymentmsg = '';
+
             $scope.creditEther = function(address, ethers){
                 ethers = ethers * 1000000000000000000;
 
@@ -378,7 +380,9 @@ angular.module('homeController', [])
                             timeOut: 3000
                         };
                         toastr.success("txHash : "+resp.data.txHash, 'Payment Success!');
+
                     }, 500);
+                    $scope.paymentmsg = resp.data.txHash;
                     data.user_id = $cookies.userId;
                     data.credits = 0;
                     User.updateBalance(data)
