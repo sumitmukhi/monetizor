@@ -165,7 +165,7 @@ router.put('/verify', function(req, res) {
 
 router.put('/verify/phone', function(req, res) {
     
-    authy.phones().verification_check(req.body.phone, '91', req.body.code, function (err, resp) {
+    authy.phones().verification_check(req.body.phone, '1', req.body.code, function (err, resp) {
         if(err) {
             console.log(err);
             res.setHeader('Content-Type', 'application/json');
