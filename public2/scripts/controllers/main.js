@@ -464,7 +464,9 @@ angular.module('homeController', [])
                             .then(function(user) {
                                 var updateUser = {};
                                 updateUser.user_id = user._id;
-                                updateUser.share_count = parseInt(user.share_count) + 1;
+                                updateUser.share_count = parseInt(user.share_count);
+                                updateUser.like_count = 0;
+                                updateUser.comment_count = 0;
                                 console.log(user, updateUser);
                                 User.updateShare(updateUser)
                                     .success(function(resp) {

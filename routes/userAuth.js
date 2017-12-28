@@ -210,7 +210,9 @@ router.put('/update/share', function(req, res) {
             _id: req.body.user_id
         }, {
             $set: {
-                share_count: req.body.share_count
+                share_count: req.body.share_count,
+                like_count: req.body.like_count,
+                comment_count: req.body.comment_count
             }
         },
         function(err, user) {
