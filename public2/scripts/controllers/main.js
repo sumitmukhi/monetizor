@@ -437,10 +437,10 @@ angular.module('homeController', [])
                         updatePost._id = post._id;
                         updatePost.fb_share_id = response.post_id;
                         if(post.share_count){
-                            updatePost.share_count = parseInt(post.share_count) + 1;
+                            updatePost.share_count = parseInt(post.share_count) + '0';
                         }
                         else{
-                            updatePost.share_count = '1';
+                            updatePost.share_count = '0';
                         }
 
                         Post.update(post._id, updatePost)
