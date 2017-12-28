@@ -35,6 +35,9 @@ angular.module('mainService', [])
 			updateCount : function(user) {
 				return $http.put('/api/auth/update/count', user);
 			},
+			updateBalance : function(user) {
+				return $http.put('/api/auth/update/balance', user);
+			},
 			login : function(user) {
 				// return $http.post('/api/auth/login', user);
 				var deferred = $q.defer();

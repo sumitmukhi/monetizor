@@ -58,10 +58,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label" for="">Bitcoin Wallet</label>
-                                    <input type="text" class="form-control">
+                                    <label class="control-label" for="">Ether Wallet</label>
+                                    <input type="text" class="form-control" ng-model="walletAddress">
                                 </div>
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-primary" ng-click="creditEther(walletAddress, profileData.credited_count)">Withdraw</button>
                             </form>
                         </div>
                     </div>

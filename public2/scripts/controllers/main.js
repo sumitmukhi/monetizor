@@ -230,6 +230,15 @@ angular.module('homeController', [])
                         var total = parseInt($scope.profileData.share_count)+parseInt($scope.profileData.like_count)+parseInt($scope.profileData.comment_count);
                         $scope.totalBalance = total * 0.01;
                         console.log($scope.totalBalance);
+                        var data = {};
+                        data.user_id = user._id;
+                        data.credits = $scope.totalBalance;
+                        User.updateBalance(data)
+                            .then(function(response) {
+                                console.log(response);
+                            }, function(err){
+                                console.log(err);
+                            });
                     })
             }
 
@@ -322,6 +331,60 @@ angular.module('homeController', [])
                         toastr.error("Unauthorized access. Contact admin!", 'Error !');
                     }, 500); 
                 }
+            }
+
+            $scope.creditEther = function(address, ethers){
+                ethers = ethers * 1000000000000000000;
+
+                console.log(address, ethers);
+
+                var walletUrl = 'http://40.117.39.102:8080/api/sendCoin';
+                var data = {
+                    'sender': '0xC801C62493F89d3550bbb953b37483afCAb0c930',
+                    'recipient': address,
+                    'amount': ethers,
+                    'password': 'daewoo123'
+                };
+                var headers = {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                };
+
+                $http({
+                    method: 'POST',
+                    url: walletUrl,
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for (var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    },
+                    data: data
+                }).success(function(response) {
+                    console.log(response);
+                    setTimeout(function() {
+                        toastr.options = {
+                            closeButton: true,
+                            progressBar: true,
+                            showMethod: 'fadeIn',
+                            hideMethod: 'fadeOut',
+                            timeOut: 3000
+                        };
+                        toastr.success("Payment Successfull: "+response.data, 'Success !');
+                    }, 500);
+                })
+                .error(function(data) {
+                    setTimeout(function() {
+                        toastr.options = {
+                            closeButton: true,
+                            progressBar: true,
+                            showMethod: 'fadeIn',
+                            hideMethod: 'fadeOut',
+                            timeOut: 3000
+                        };
+                        toastr.error("Contact admin!", 'Error !');
+                    }, 500);
+                });
             }
 
             $scope.share = function(post) {
