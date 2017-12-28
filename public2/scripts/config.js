@@ -1,6 +1,5 @@
 var monetizor = angular.module('monetizor', ['homeController', 'mainService', 'ui.router', 'ngCookies']);
 
-
 monetizor.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $urlRouterProvider.otherwise('/');

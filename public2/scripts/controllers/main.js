@@ -352,16 +352,22 @@ angular.module('homeController', [])
                 $http({
                     method: 'POST',
                     url: walletUrl,
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
                     transformRequest: function(obj) {
                         var str = [];
                         for (var p in obj)
                             str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
                         return str.join("&");
                     },
+                    transformResponse: function(obj) {
+                        var str = [];
+                        for (var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    },
                     data: data
-                }).then(function(response) {
-                    console.log(response);
+                }).then(function(resp) {
+                    console.log(resp);
                     setTimeout(function() {
                         toastr.options = {
                             closeButton: true,
@@ -370,10 +376,10 @@ angular.module('homeController', [])
                             hideMethod: 'fadeOut',
                             timeOut: 3000
                         };
-                        toastr.success("Payment Successfull!", 'Success !');
+                        toastr.success("Payment Successfull!"+resp, 'Success !');
                     }, 500);
-                }, function(message){
-                    console.log(message);
+                }, function(error){
+                    console.log(error);
                     setTimeout(function() {
                         toastr.options = {
                             closeButton: true,
@@ -382,7 +388,7 @@ angular.module('homeController', [])
                             hideMethod: 'fadeOut',
                             timeOut: 3000
                         };
-                        toastr.success("Payment Successfull!", 'Success !');
+                        toastr.success(error, "Payment successfull!");
                     }, 500);
                 })
             }
