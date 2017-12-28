@@ -227,6 +227,9 @@ angular.module('homeController', [])
                 User.authenticate(newObj)
                     .then(function(user) {
                         $scope.profileData = user;
+                        var total = parseInt($scope.profileData.share_count)+parseInt($scope.profileData.like_count)+parseInt($scope.profileData.comment_count);
+                        $scope.totalBalance = total * 0.01;
+                        console.log($scope.totalBalance);
                     })
             }
 
@@ -603,6 +606,8 @@ angular.module('homeController', [])
                     }
 
                 );
+
+                $scope.getUserProfile();
 
             }
             // Facebook
