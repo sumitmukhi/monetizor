@@ -8,6 +8,7 @@ lib-cov
 *.gz
 keys.json
 README.md
+Update.md
 README_es.md
 license
 

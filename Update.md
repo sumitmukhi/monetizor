@@ -47,3 +47,8 @@ dashabard(client)
 total : count shares by influencers, total reach (engagement [like+comment+share]), balance(ether's burnt) , running, upcoming, historical campaigns
 
 each campaign ==> shares by influencers, top contributer, list of contrubuters, create campaign, profile ==> load money, withdraw.
+
+
+
+======
+event bubbling, STOP propagation, settimeout, closure, array.map
